@@ -315,6 +315,12 @@ def get_covariance(upper_bound_rectangle_1, lower_bound_rectangle_1, upper_bound
 
 
 def make_pseudo_obs(dimensions, samplesize, dependence, family):
+    ''' Function creates pseudo-observations in given dimensions, size and from given copula model.
+    :param dimensions: # Dimensions
+    :param samplesize: Desired samplesize
+    :param dependence: Covariance matrix or other dependence measure
+    :param family: Type of copula
+    '''
     if family == 'normal':
         # Check if covariance matrix is given
         if type(dependence) != np.ndarray:
@@ -334,30 +340,3 @@ def make_pseudo_obs(dimensions, samplesize, dependence, family):
         raise ValueError('Not implemented yet!')
 
     return B
-
-
-##
-def main():
-    # Initialize values and arrays for copula
-    size_of_copula = 100
-    dimensions = 3
-    covariance =  np.array([[1, 0.5, 0.5], [0.5, 1, 0.5], [0.5, 0.5, 1]])
-
-    # Set bounds for rectangle of interest
-    upper_bound_rectangle_1 = np.array([1 / 3, 1 / 3, 1 / 3])
-    lower_bound_rectangle_1 = np.array([0, 0, 0])
-    upper_bound_rectangle_2 = np.array([1 / 3, 1 / 3, 1 / 3])
-    lower_bound_rectangle_2 = np.array([0, 0, 0])
-
-    # Create Pseudo-Obs
-    pseudo_obs = make_pseudo_obs(dimensions=dimensions, samplesize=size_of_copula, dependence=covariance,
-                                 family='normal')
-    # Call covariance estimation
-    estimated_covariance = get_covariance(upper_bound_rectangle_1, lower_bound_rectangle_1, upper_bound_rectangle_2,
-                                          lower_bound_rectangle_2, pseudo_obs)
-
-    print(estimated_covariance)
-
-
-if __name__ == "__main__":
-    main()
