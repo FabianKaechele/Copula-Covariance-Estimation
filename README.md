@@ -1,5 +1,6 @@
 # Empirical copula covariance estimation
-This repository contains the Python-Code for the paper:  ****************  
+This repository contains the Python-Code for the paper:  "*Approximation of the Empirical Copula Process revisited: A new
+plug-in Estimator*" 
 
 
 ## Features
