@@ -334,7 +334,7 @@ def make_pseudo_obs(dimensions, samplesize, dependence, family):
         B = A.copy()
         # Make Pseudo-Obs
         for col in range(A.shape[1]):
-            B[:, col] = scipy.stats.rankdata(A[:, col]) / (samplesize + 1)
+            B[:, col] = scipy.stats.rankdata(A[:, col]) / (samplesize)
 
     elif family == 'clayton':
         raise ValueError('Not implemented yet!')
